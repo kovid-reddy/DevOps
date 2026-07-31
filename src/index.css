@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base reset ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0a0a0a;
+  cursor: none;
+}
+
+/* ─── Custom scrollbar inside panels ─────────────────────── */
+.persona-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.persona-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+.persona-scroll::-webkit-scrollbar-thumb {
+  background: #00e5ff;
+}
+
+/* ─── Scanline overlay ────────────────────────────────────── */
+.scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.07) 2px,
+    rgba(0, 0, 0, 0.07) 4px
+  );
+  pointer-events: none;
+}
+
+/* ─── Glow text utility ───────────────────────────────────── */
+.text-glow {
+  text-shadow: 0 0 15px rgba(0, 229, 255, 0.8), 0 0 30px rgba(0, 229, 255, 0.45);
+}
+
+/* ─── Sharp skew card ─────────────────────────────────────── */
+.skew-card {
+  transform: skewX(-10deg);
+}
+.skew-card-inner {
+  transform: skewX(10deg); /* counter-skew for text inside */
+}
+
+/* ─── Stat bar animation ──────────────────────────────────── */
+.stat-bar-fill {
+  transition: width 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Floating triangle animation ────────────────────────── */
+@keyframes floatUp {
+  0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+  50%       { transform: translateY(-18px) rotate(12deg); opacity: 1; }
+}
+
+.float-tri {
+  animation: floatUp 4s ease-in-out infinite;
+}
+
+/* ─── Screen flash ────────────────────────────────────────── */
+@keyframes flashOut {
+  0%   { opacity: 0.65; }
+  100% { opacity: 0; }
+}
+
+.screen-flash {
+  animation: flashOut 0.2s ease-out forwards;
+}
+
+/* ─── Menu item stagger entrance ─────────────────────────── */
+@keyframes menuSlideIn {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ─── Panel content entrance ─────────────────────────────── */
+@keyframes panelReveal {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.panel-reveal {
+  animation: panelReveal 0.3s ease forwards;
+}
+
+/* ─── Cursor ──────────────────────────────────────────────── */
+.custom-cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
